@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    container_name: mysql
+    environment:
+      #MYSQL_HOST: localhost
+      MYSQL_DATABASE: db
+      #MYSQL_USER: 'DaMi'
+      MYSQL_ROOT_PASSWORD: '12345'
+    ports:
+      - '3306:3306'
+    volumes:
+      - ~/docker/mysql-data:/var/lib/mysql
