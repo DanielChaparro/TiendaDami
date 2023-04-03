@@ -1,17 +1,15 @@
 package com.tienda.dami.TiendaDami.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="User")
+@Table(name="users")
 public class User implements Serializable {
 
     @Id
@@ -23,8 +21,8 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "rol")
-    private String rol;
+    @ManyToMany
+    private List<Role> roles;
 
     public Long getId() {
         return id;
@@ -50,12 +48,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getRol() {
-        return rol;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -63,12 +61,12 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(nombre, user.nombre) && Objects.equals(password, user.password) && Objects.equals(rol, user.rol);
+        return Objects.equals(id, user.id) && Objects.equals(nombre, user.nombre) && Objects.equals(password, user.password) && Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, password, rol);
+        return Objects.hash(id, nombre, password, roles);
     }
 
     @Override

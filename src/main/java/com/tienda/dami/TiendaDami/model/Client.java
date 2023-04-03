@@ -1,15 +1,13 @@
 package com.tienda.dami.TiendaDami.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="Client")
+@Table(name="clients")
 public class Client {
 
     @Id
@@ -24,6 +22,9 @@ public class Client {
 
     @Column
     private String celular;
+
+    @OneToMany
+    private List<Pay> pays;
 
     public Long getId() {
         return id;

@@ -12,4 +12,7 @@ spring:
       initialize-schema: always
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+jwt:
+  secret: TiendaSecret
+  expiration: 3600000

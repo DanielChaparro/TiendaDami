@@ -1,15 +1,13 @@
 package com.tienda.dami.TiendaDami.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name = "pays")
 public class Pay {
 
     @Id
@@ -27,6 +25,9 @@ public class Pay {
 
     @Column(name = "total_pago")
     private Double totalPayment;
+
+    @ManyToMany
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -68,17 +69,25 @@ public class Pay {
         this.totalPayment = totalPayment;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pay pay = (Pay) o;
-        return Objects.equals(id, pay.id) && Objects.equals(name, pay.name) && Objects.equals(paymentType, pay.paymentType) && Objects.equals(payNumber, pay.payNumber) && Objects.equals(totalPayment, pay.totalPayment);
+        return Objects.equals(id, pay.id) && Objects.equals(name, pay.name) && Objects.equals(paymentType, pay.paymentType) && Objects.equals(payNumber, pay.payNumber) && Objects.equals(totalPayment, pay.totalPayment) && Objects.equals(products, pay.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, paymentType, payNumber, totalPayment);
+        return Objects.hash(id, name, paymentType, payNumber, totalPayment, products);
     }
 
     @Override

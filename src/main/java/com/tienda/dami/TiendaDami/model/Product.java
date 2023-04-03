@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name = "products")
 public class Product {
 
     @Id
